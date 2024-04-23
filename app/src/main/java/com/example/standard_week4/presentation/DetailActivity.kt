@@ -1,28 +1,23 @@
-package com.example.standard_week4
+package com.example.standard_week4.presentation
 
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.os.PersistableBundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.standard_week4.data.Card
 import com.example.standard_week4.databinding.ActivityDetailBinding
 
-class DetailActivity:AppCompatActivity() {
+class DetailActivity : AppCompatActivity() {
     private val binding:ActivityDetailBinding by lazy {
         ActivityDetailBinding.inflate(layoutInflater)
-    }
-    private val item by lazy {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra("item", Card::class.java)
-        } else {
-            intent.getParcelableExtra("item")
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         setContentView(binding.root)
+
+        val intent:Intent = getIntent()
+        val item = intent.getParcelableExtra<Card>("item")
 
         binding.editName.text = item?.name
         binding.editNumber.text = item?.number

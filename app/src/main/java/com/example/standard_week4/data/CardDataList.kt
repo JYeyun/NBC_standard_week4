@@ -1,4 +1,6 @@
-package com.example.standard_week4
+package com.example.standard_week4.data
+
+import com.example.standard_week4.data.Card
 
 fun cardDataList():List<Card>{
     return listOf(
@@ -10,5 +12,6 @@ fun cardDataList():List<Card>{
         ),
         Card(
             "Jung Ye Youn", "6543  6543  6543  6543", "02 / 28", "$3,100.40"
-        ))
+        )
+    )
 }

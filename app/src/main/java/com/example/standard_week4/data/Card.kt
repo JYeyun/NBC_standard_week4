@@ -1,4 +1,4 @@
-package com.example.standard_week4
+package com.example.standard_week4.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

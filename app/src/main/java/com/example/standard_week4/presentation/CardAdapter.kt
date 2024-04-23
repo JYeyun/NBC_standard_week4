@@ -1,12 +1,12 @@
-package com.example.standard_week4
+package com.example.standard_week4.presentation
 
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.standard_week4.data.Card
+import com.example.standard_week4.data.cardDataList
 import com.example.standard_week4.databinding.BlueItemBinding
 import com.example.standard_week4.databinding.OrangeItemBinding
 import com.example.standard_week4.databinding.SkyblueItemBinding
@@ -60,7 +60,9 @@ class CardAdapter(val cardList:List<Card>):RecyclerView.Adapter<RecyclerView.Vie
                 blueHolder.number.text = cardList[position].name
                 blueHolder.date.text = cardList[position].date
                 blueHolder.money.text = cardList[position].money
-                blueHolder.click(cardList[position])
+                holder.itemView.setOnClickListener {
+                    itemClick?.onItemClick(it,position)
+                }
             }
             ITEM_SKYBLUE ->{
                 val SkyblueHolder = holder as SkyblueViewHolder
@@ -69,7 +71,9 @@ class CardAdapter(val cardList:List<Card>):RecyclerView.Adapter<RecyclerView.Vie
                 SkyblueHolder.date.text = cardList[position].date
                 SkyblueHolder.money.text = cardList[position].money
 
-                SkyblueHolder.click(cardList[position])
+                holder.itemView.setOnClickListener {
+                    itemClick?.onItemClick(it,position)
+                }
             }
             else ->{
                 val OrangeHolder = holder as OrangeViewHolder
@@ -78,8 +82,9 @@ class CardAdapter(val cardList:List<Card>):RecyclerView.Adapter<RecyclerView.Vie
                 OrangeHolder.date.text = cardList[position].date
                 OrangeHolder.money.text = cardList[position].money
 
-                OrangeHolder.click(cardList[position])
-            }
+                holder.itemView.setOnClickListener {
+                    itemClick?.onItemClick(it,position)
+                }            }
         }
     }
 
@@ -92,42 +97,17 @@ class CardAdapter(val cardList:List<Card>):RecyclerView.Adapter<RecyclerView.Vie
         val number = binding.tvCardNumber
         val date = binding.tvDate
         val money = binding.tvMoney
-        fun click(item:Card){
-            val context = binding.root.context
-            binding.item1.setOnClickListener{
-                val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("item", item)
-                context.startActivity(intent)
-            }
-        }
     }
     inner class SkyblueViewHolder(private val binding: SkyblueItemBinding) : RecyclerView.ViewHolder(binding.root){
         val name = binding.tvName
         val number = binding.tvCardNumber
         val date = binding.tvDate
         val money = binding.tvMoney
-        fun click(item:Card){
-            val context = binding.root.context
-            binding.item2.setOnClickListener{
-                val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("item", item)
-                context.startActivity(intent)
-                Log.d("showitem", "$item")
-            }
-        }
     }
     inner class OrangeViewHolder(private val binding: OrangeItemBinding) : RecyclerView.ViewHolder(binding.root){
         val name = binding.tvName
         val number = binding.tvCardNumber
         val date = binding.tvDate
         val money = binding.tvMoney
-        fun click(item:Card){
-            val context = binding.root.context
-            binding.item3.setOnClickListener{
-                val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("item", item)
-                context.startActivity(intent)
-            }
-        }
     }
 }
